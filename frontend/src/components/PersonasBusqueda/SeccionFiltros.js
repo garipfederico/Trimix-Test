@@ -1,4 +1,5 @@
 import React from "react";
+import {useNavigate} from 'react-router-dom'
 import {
     Button,
     Divider,
@@ -12,6 +13,7 @@ import GenericComboBox from "../reusables/GenericComboBox";
 
 
 function SeccionFiltros(props) {
+    const navigate = useNavigate();
     const stackHeaderStyle = {
         direction: "row",
         justifyContent: "space-between",
@@ -22,24 +24,23 @@ function SeccionFiltros(props) {
         sx: { width: "25%", minWidth: "200px", mr: 2 },
     };
 
-    const newButtonStyle = {
+    const newButtonProps = {
+        onClick: ()=> navigate('/personas/new'),
         variant: "contained",
-        size: "small",
         color: "success",
-        sx: {},
+        sx: {textTransform:'none'},
     };
 
     const searchButtonStyle = {
         variant: "contained",
-        size: "small",
         color: "primary",
-        sx: {},
+        sx: {textTransform:'none'},
     };
     return (
         <>
             <Stack {...stackHeaderStyle}>
                 <Typography variant="h4">Personas</Typography>
-                <Button {...newButtonStyle}>
+                <Button {...newButtonProps}>
                     <Add />
                     Nuevo
                 </Button>
@@ -63,7 +64,7 @@ function SeccionFiltros(props) {
                         </Stack>
                         <Stack {...inputsStackStyle}>
                             <Typography {...props.textLabel}>
-                                Tipo documento
+                                Tipo de documento
                             </Typography>
                             <GenericComboBox
                                 // label="Tipo de documento"
@@ -76,6 +77,7 @@ function SeccionFiltros(props) {
                                 valueForNone="dfd"
                                 labelForNone="Seleccionar tipo de documento"
                                 values={["DNI", "Pasaporte", "L.E."]}
+                                width={'100%'}
                                 minWidth={200}
                             />
                         </Stack>

@@ -1,13 +1,44 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Container } from "@mui/material";
 import { Box } from "@mui/system";
-import {grey} from '@mui/material/colors'
+import { grey } from "@mui/material/colors";
 import SeccionFiltros from "./SeccionFiltros";
 import SeccionListadoPersonas from "./SeccionListadoPersonas";
 
-function ClientesBusqueda() {
+import personaService from "../../services/personas.services";
+
+function PersonasBusqueda() {
     const [nombre, setNombre] = useState("");
     const [tipoDoc, setTipoDoc] = useState("");
+    const [personas, setPersonas] = useState([]);
+
+    useEffect(() => {
+        const fetchPersonas = async () => {
+            const personas = await personaService.getPersonas;
+            console.log(await personas);
+            // setPersonas(personas);
+        };
+        setPersonas([
+            {
+                idPersona: "1",
+                nombre: "Federico",
+                apellido: "Garip",
+                numeroDocumento: "28114947",
+                tipoDoc: "DNI",
+                fechaNac: "17/04/1980",
+            },
+            {
+                idPersona: "2",
+                nombre: "Jim",
+                apellido: "Morrison",
+                numeroDocumento: "800649",
+                tipoDoc: "Pasaporte",
+                fechaNac: "17/04/1980",
+            },
+        ])
+
+        fetchPersonas();
+    }, []);
 
     const paperStyle = {
         sx: {
@@ -34,6 +65,8 @@ function ClientesBusqueda() {
         style: { fontWeight: "600" },
     };
 
+
+
     return (
         <Box {...boxStyle}>
             <Container>
@@ -46,6 +79,7 @@ function ClientesBusqueda() {
                     textLabel={textLabel}
                 />
                 <SeccionListadoPersonas
+                    personas={personas}
                     paperStyle={paperStyle}
                     textLabel={textLabel}
                 />
@@ -54,4 +88,4 @@ function ClientesBusqueda() {
     );
 }
 
-export default ClientesBusqueda;
+export default PersonasBusqueda;

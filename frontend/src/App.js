@@ -1,14 +1,17 @@
 import "./App.css";
 import { BrowserRouter, Navigate, Routes, Route } from "react-router-dom";
-import ClienteBusqueda from "./components/ClientesBusqueda/ClientesBusqueda";
+import PersonasBusqueda from "./components/PersonasBusqueda/PersonasBusqueda";
+import PersonaAE from './components/PersonaAE/PersonaAE'
 import "@fontsource/roboto/300.css";
 
 function App() {
     return (
         <BrowserRouter>
             <Routes>
-                <Route path="home" element={<ClienteBusqueda />} />
-                <Route path="/personas/:idPersona" element={<ClienteBusqueda />} />
+                <Route path="home" element={<PersonasBusqueda />} />
+                <Route path="/personas/:idPersona" element={<PersonaAE />} />
+                <Route path="/personas/new" element={<PersonaAE />} />
+                {/* <Route path="/personas/:idPersona/:edit" element={<PersonaAE />} /> */}
                 <Route path="/*" element={<Navigate to="/home" />} />
             </Routes>
         </BrowserRouter>

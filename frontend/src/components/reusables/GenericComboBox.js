@@ -9,7 +9,7 @@ export default function GenericComboBox(props) {
 
     return (
         <div>
-            <FormControl sx={{ minWidth: props.minWidth }} >
+            <FormControl sx={{ width: props.width ,minWidth: props.minWidth }} >
 
                 <InputLabel id={props.label}>{props.label}</InputLabel>
 
