@@ -23,13 +23,14 @@
     "styled-components": "^5.3.6",
     "web-vitals": "^2.1.4",
     "yup": "^0.32.11"
-
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "servicio" : "json-server --port 3010 --watch api.json"
+
   },
   "eslintConfig": {
     "extends": [
@@ -48,5 +49,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "json-server": "^0.17.1"
   }
 }

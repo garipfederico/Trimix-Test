@@ -93,7 +93,7 @@ export default function TablaPersonas(props) {
                     <TableBody id="tbPersona">
                         {props.personas.map((row) => (
                             <FilaTablaPersonas
-                                key={row.idPersona}
+                                key={row.id}
                                 {...row}
                                 handleEditClick={handleEditClick}
                                 handleDeleteClick={handleDeleteClick}

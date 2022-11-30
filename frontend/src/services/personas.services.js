@@ -1,15 +1,24 @@
 import axios from "axios"
 
-const API_URL = 'https://rickandmortyapi.com/api/'
+const API_URL = 'http://localhost:3010/personas'
 
 const getPersonas = () => {
-    return axios.get(API_URL + 'character')
+    return axios.get(API_URL)
     .then((res) => {
-        console.log(res.data.results)}
+        console.log('hola');
+        console.log(res.data);
+    return res.data}
         )
     .catch((error) =>{
         return handleError(error)
     })
+}
+
+const postPersonas = (persona) => {
+    console.log('axios')
+    return axios.post(API_URL, persona)
+    .then((res)=>{console.log(res)})
+    .catch((error)=>{handleError(error)})
 }
 
 const handleError = (error) => {
@@ -27,6 +36,7 @@ const handleError = (error) => {
 
 const personaService = {
     getPersonas,
+    postPersonas
 }
 
 export default personaService;

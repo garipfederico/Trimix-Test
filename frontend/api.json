@@ -1,0 +1,47 @@
+{
+  "personas": [
+    {
+      "id": 1,
+      "nombre": "Federico",
+      "apellido": "Garip",
+      "numeroDocumento": "28114947",
+      "tipoDocumento": "DNI",
+      "fechaNacimiento": "17/04/1980"
+    },
+    {
+      "id": 2,
+      "nombre": "Jim",
+      "apellido": "Morrison",
+      "numeroDocumento": "800649",
+      "tipoDocumento": "Pasaporte",
+      "fechaNacimiento": "17/04/1980"
+    },
+    {
+      "id": 3,
+      "nombre": "Plant"
+    },
+    {
+      "nombre": "Roger",
+      "id": 4
+    },
+    {
+      "id": 5
+    },
+    {
+      "nombre": "Juan",
+      "apellido": "Carl",
+      "numeroDocumento": "2324232",
+      "tipoDocumento": "DNI",
+      "fechaNacimiento": "2022-11-15T03:00:00.000Z",
+      "id": 6
+    },
+    {
+      "nombre": "Carlitos",
+      "apellido": "Monteverde",
+      "numeroDocumento": "27344355",
+      "tipoDocumento": "Pasaporte",
+      "fechaNacimiento": "2022-11-08T03:00:00.000Z",
+      "id": 7
+    }
+  ]
+}

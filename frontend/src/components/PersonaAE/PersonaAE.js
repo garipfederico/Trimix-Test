@@ -15,6 +15,8 @@ import { ArrowBack, Save } from "@mui/icons-material";
 import { useFormik } from "formik";
 import personaSchema from "./personaSchema";
 
+import personaService from "../../services/personas.services";
+
 import GenericComboBox from "../reusables/GenericComboBox";
 import DatePicker from "../reusables/DatePicker";
 
@@ -34,7 +36,7 @@ function PersonaAE() {
         },
     });
     
-    const idPersona = useParams('idPersona')
+    const idPersona = useParams('idPersona').idPersona
     
     if(idPersona !== 'new'){
         const fetchPersonaById = async() => {
@@ -50,6 +52,14 @@ function PersonaAE() {
     const handleSubmit = async (e) => {
         e?.preventDefault();
         console.log("submitOK");
+        console.log(formik.values)
+        console.log('idPersona', idPersona)
+        if(idPersona !== 'new'){
+            console.log('Hola')
+        } else {
+            const persona = {...formik.values}
+        personaService.postPersonas(persona)
+        }
     };
 
     const paperStyle = {

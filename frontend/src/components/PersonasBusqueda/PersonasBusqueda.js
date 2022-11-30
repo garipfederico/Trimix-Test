@@ -14,30 +14,13 @@ function PersonasBusqueda() {
 
     useEffect(() => {
         const fetchPersonas = async () => {
-            const personas = await personaService.getPersonas;
-            console.log(await personas);
-            // setPersonas(personas);
+            const personas = await personaService.getPersonas();
+            console.log('PersonasBusqueda', personas);
+            setPersonas(personas);
         };
-        setPersonas([
-            {
-                idPersona: "1",
-                nombre: "Federico",
-                apellido: "Garip",
-                numeroDocumento: "28114947",
-                tipoDoc: "DNI",
-                fechaNac: "17/04/1980",
-            },
-            {
-                idPersona: "2",
-                nombre: "Jim",
-                apellido: "Morrison",
-                numeroDocumento: "800649",
-                tipoDoc: "Pasaporte",
-                fechaNac: "17/04/1980",
-            },
-        ])
+        
+        fetchPersonas().catch(console.error);
 
-        fetchPersonas();
     }, []);
 
     const paperStyle = {
