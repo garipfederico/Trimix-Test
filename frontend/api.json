@@ -1,31 +1,12 @@
 {
   "personas": [
     {
-      "id": 1,
-      "nombre": "Federico",
-      "apellido": "Garip",
-      "numeroDocumento": "28114947",
-      "tipoDocumento": "DNI",
-      "fechaNacimiento": "17/04/1980"
-    },
-    {
       "id": 2,
       "nombre": "Jim",
       "apellido": "Morrison",
       "numeroDocumento": "800649",
       "tipoDocumento": "Pasaporte",
       "fechaNacimiento": "17/04/1980"
-    },
-    {
-      "id": 3,
-      "nombre": "Plant"
-    },
-    {
-      "nombre": "Roger",
-      "id": 4
-    },
-    {
-      "id": 5
     },
     {
       "nombre": "Juan",

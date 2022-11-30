@@ -13,12 +13,14 @@ import { useMediaQuery, Grid, Typography } from "@mui/material";
 import { DeleteForever } from "@mui/icons-material";
 import FilaTablaPersonas from "./FilaTablaPersonas";
 import AlertDialog from "../reusables/AlertDialog";
+import personaService from "../../services/personas.services";
 
 export default function TablaPersonas(props) {
     const navigate = useNavigate();
     const [openAlertDialog, setOpenAlertDialog] = useState(false);
     const [nombre, setNombre] = useState("");
     const [apellido, setApellido] = useState("");
+    const [id, setId] = useState("");
 
     const isMediumDevice = useMediaQuery("(max-width:900px");
 
@@ -30,12 +32,16 @@ export default function TablaPersonas(props) {
         console.log("delete");
         setNombre(nombre);
         setApellido(apellido);
+        setId(id);
+        console.log(id);
         setOpenAlertDialog(true);
     };
 
-    const deletePersona= ()=>{
-      //TODO delete a la bbdd
-    }
+    const deletePersona = () => {
+        console.log(id);
+        console.log("deleteOK");
+        personaService.deletePersona(id);
+    };
 
     return (
         <>
@@ -126,10 +132,7 @@ export default function TablaPersonas(props) {
                 open={openAlertDialog}
                 setOpen={setOpenAlertDialog}
                 title={
-                    "Está por eliminar a la persona: " +
-                    nombre +
-                    " " +
-                    apellido
+                    "Está por eliminar a la persona: " + nombre + " " + apellido
                 }
                 content={"¿Seguro desea eliminarlo"}
                 buttonTextAccept={"Eliminar"}

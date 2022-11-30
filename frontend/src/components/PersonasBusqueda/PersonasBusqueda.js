@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { Container } from "@mui/material";
 import { Box } from "@mui/system";
 import { grey } from "@mui/material/colors";
@@ -12,16 +12,15 @@ function PersonasBusqueda() {
     const [tipoDoc, setTipoDoc] = useState("");
     const [personas, setPersonas] = useState([]);
 
-    useEffect(() => {
-        const fetchPersonas = async () => {
-            const personas = await personaService.getPersonas();
-            console.log('PersonasBusqueda', personas);
-            setPersonas(personas);
-        };
-        
-        fetchPersonas().catch(console.error);
-
+    const fetchPersonas = useCallback(async () => {
+        const personas = await personaService.getPersonas();
+        console.log("PersonasBusqueda",await  personas);
+        setPersonas(personas);
     }, []);
+
+    useEffect(() => {
+        fetchPersonas().catch(console.error);
+    }, [fetchPersonas]);
 
     const paperStyle = {
         sx: {
@@ -47,8 +46,6 @@ function PersonasBusqueda() {
         color: grey[700],
         style: { fontWeight: "600" },
     };
-
-
 
     return (
         <Box {...boxStyle}>

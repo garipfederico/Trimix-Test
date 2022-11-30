@@ -5,8 +5,6 @@ const API_URL = 'http://localhost:3010/personas'
 const getPersonas = () => {
     return axios.get(API_URL)
     .then((res) => {
-        console.log('hola');
-        console.log(res.data);
     return res.data}
         )
     .catch((error) =>{
@@ -14,12 +12,21 @@ const getPersonas = () => {
     })
 }
 
-const postPersonas = (persona) => {
-    console.log('axios')
+const postPersona = (persona) => {
     return axios.post(API_URL, persona)
     .then((res)=>{console.log(res)})
-    .catch((error)=>{handleError(error)})
+    .catch((error)=>{
+        return handleError(error)
+    })
 }
+
+const deletePersona = (id) => {
+return axios.delete(API_URL +'/' + id)
+.then((res)=>console.log(res))
+.catch((error) => {
+return handleError(error)
+})}
+
 
 const handleError = (error) => {
     if (error.response) {
@@ -36,7 +43,8 @@ const handleError = (error) => {
 
 const personaService = {
     getPersonas,
-    postPersonas
+    postPersona,
+    deletePersona
 }
 
 export default personaService;

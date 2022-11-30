@@ -58,7 +58,7 @@ function PersonaAE() {
             console.log('Hola')
         } else {
             const persona = {...formik.values}
-        personaService.postPersonas(persona)
+        personaService.postPersona(persona)
         }
     };
 
