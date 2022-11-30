@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import {
     Box,
@@ -14,11 +14,10 @@ import { grey } from "@mui/material/colors";
 import { ArrowBack, Save } from "@mui/icons-material";
 import { useFormik } from "formik";
 import personaSchema from "./personaSchema";
-
 import personaService from "../../services/personas.services";
-
 import GenericComboBox from "../reusables/GenericComboBox";
 import DatePicker from "../reusables/DatePicker";
+import { AxiosError } from "axios";
 
 function PersonaAE() {
     const navigate = useNavigate();
@@ -35,32 +34,44 @@ function PersonaAE() {
             handleSubmit();
         },
     });
-    
-    const idPersona = useParams('idPersona').idPersona
-    
-    if(idPersona !== 'new'){
-        const fetchPersonaById = async() => {
-//TODO personaService.getPersonaByID(idPersona)
 
-
-        }
-        fetchPersonaById(idPersona)
+    const idPersona = useParams("idPersona").idPersona;
+useEffect(()=>{
+    if (idPersona !== "new") {
+        const fetchPersonaById = async () => {
+            const persona = await personaService.getPersonaById(idPersona);
+             formik.setFieldValue('nombre', persona.nombre)
+             formik.setFieldValue('apellido', persona.apellido)
+             formik.setFieldValue('numeroDocumento', persona.numeroDocumento)
+             formik.setFieldValue('tipoDocumento', persona.tipoDocumento)
+             formik.setFieldValue('fechaNacimiento', persona.fechaNacimiento)
+        };
+        fetchPersonaById(idPersona);
     }
-    
-
+},[])
 
     const handleSubmit = async (e) => {
         e?.preventDefault();
-        console.log("submitOK");
-        console.log(formik.values)
-        console.log('idPersona', idPersona)
-        if(idPersona !== 'new'){
-            console.log('Hola')
+        const persona = { ...formik.values };
+        if (idPersona !== "new") {
+            const respuesta = personaService.putPersona(persona, idPersona);
+            handleRespuesta(respuesta)
         } else {
-            const persona = {...formik.values}
-        personaService.postPersona(persona)
+            const respuesta = personaService.postPersona(persona);
+            handleRespuesta(respuesta)
         }
+        
     };
+
+    const handleRespuesta = (respuesta, mensaje) => {
+        if (respuesta instanceof AxiosError) {
+          console.log(respuesta)
+        //   processErrorMessage(respuesta.response.data)
+        } else {
+          navigate("/home");
+        //   setDataSnackbar(mensaje);
+        }
+      };
 
     const paperStyle = {
         sx: {
@@ -105,13 +116,11 @@ function PersonaAE() {
 
     const saveButtonProps = {
         type: "submit",
-        // onClick: handleSubmit(),
         variant: "contained",
         color: "success",
         sx: { textTransform: "none" },
     };
 
-    console.log("formik ", formik);
     return (
         <form onSubmit={formik.handleSubmit}>
             <Box {...boxStyle}>
@@ -192,7 +201,7 @@ function PersonaAE() {
                                         editable={true}
                                         valueForNone=""
                                         labelForNone="Seleccionar tipo de documento"
-                                        values={["DNI", "Pasaporte", "L.E."]}
+                                        values={["DNI", "Pasaporte", "Cédula"]}
                                         width={"100%"}
                                         // minWidth={178}
                                         handleChange={formik.handleChange}

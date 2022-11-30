@@ -20,12 +20,30 @@ const postPersona = (persona) => {
     })
 }
 
+const putPersona = (persona, id) => {
+    return axios.put(API_URL + '/' + id, persona)
+    .then((res)=>{console.log(res)})
+    .catch((error)=>{
+        return handleError(error)
+    })
+}
+
 const deletePersona = (id) => {
 return axios.delete(API_URL +'/' + id)
 .then((res)=>console.log(res))
 .catch((error) => {
 return handleError(error)
 })}
+
+const getPersonaById = (id) => {
+    return axios.get(API_URL + '/' + id)
+    .then((res) => {
+        return res.data}
+            )
+        .catch((error) =>{
+            return handleError(error)
+        })
+    }
 
 
 const handleError = (error) => {
@@ -44,7 +62,9 @@ const handleError = (error) => {
 const personaService = {
     getPersonas,
     postPersona,
-    deletePersona
+    putPersona,
+    deletePersona,
+    getPersonaById
 }
 
 export default personaService;

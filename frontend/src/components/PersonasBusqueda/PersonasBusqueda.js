@@ -14,12 +14,12 @@ function PersonasBusqueda() {
 
     const fetchPersonas = useCallback(async () => {
         const personas = await personaService.getPersonas();
-        console.log("PersonasBusqueda",await  personas);
         setPersonas(personas);
     }, []);
 
     useEffect(() => {
-        fetchPersonas().catch(console.error);
+        fetchPersonas()
+        .catch(console.error);
     }, [fetchPersonas]);
 
     const paperStyle = {

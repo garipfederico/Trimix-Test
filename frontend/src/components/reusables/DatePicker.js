@@ -13,6 +13,7 @@ export default function DatePicker(props) {
     const isMediumDevice = useMediaQuery('(max-width:900px');
 
     const datePickerCommonProperties = {
+        // disableFuture:true,
         label: props.label,
         inputFormat: "dd/MM/yyyy",
         readOnly: !props.editable,

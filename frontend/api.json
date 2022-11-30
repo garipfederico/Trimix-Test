@@ -1,19 +1,19 @@
 {
   "personas": [
     {
-      "id": 2,
       "nombre": "Jim",
       "apellido": "Morrison",
-      "numeroDocumento": "800649",
+      "numeroDocumento": "8006495",
       "tipoDocumento": "Pasaporte",
-      "fechaNacimiento": "17/04/1980"
+      "fechaNacimiento": "2022-11-07T03:00:00.000Z",
+      "id": 2
     },
     {
       "nombre": "Juan",
       "apellido": "Carl",
       "numeroDocumento": "2324232",
-      "tipoDocumento": "DNI",
-      "fechaNacimiento": "2022-11-15T03:00:00.000Z",
+      "tipoDocumento": "Cédula",
+      "fechaNacimiento": "2022-11-01T03:00:00.000Z",
       "id": 6
     },
     {
@@ -23,6 +23,70 @@
       "tipoDocumento": "Pasaporte",
       "fechaNacimiento": "2022-11-08T03:00:00.000Z",
       "id": 7
+    },
+    {
+      "nombre": "Marcelo",
+      "apellido": "Costamaña",
+      "numeroDocumento": "243434353",
+      "tipoDocumento": "DNI",
+      "fechaNacimiento": "2021-12-31T03:00:00.000Z",
+      "id": 8
+    },
+    {
+      "nombre": "Micaela",
+      "apellido": "Bustos Argañaras",
+      "numeroDocumento": "4005677",
+      "tipoDocumento": "Cédula",
+      "fechaNacimiento": "2022-01-31T03:00:00.000Z",
+      "id": 9
+    },
+    {
+      "nombre": "Probando",
+      "apellido": "Detodo",
+      "numeroDocumento": "242456454",
+      "tipoDocumento": "DNI",
+      "fechaNacimiento": "2022-01-01T03:00:00.000Z",
+      "id": 10
+    },
+    {
+      "nombre": "Lisandro",
+      "apellido": "Aristimuño",
+      "numeroDocumento": "34563663",
+      "tipoDocumento": "DNI",
+      "fechaNacimiento": "2022-11-09T03:00:00.000Z",
+      "id": 11
+    },
+    {
+      "nombre": "Lionel",
+      "apellido": "Messi",
+      "numeroDocumento": "30344564",
+      "tipoDocumento": "DNI",
+      "fechaNacimiento": "1985-11-30T23:17:31.873Z",
+      "id": 12
+    },
+    {
+      "nombre": "Roger",
+      "apellido": "Waters",
+      "numeroDocumento": "5357557",
+      "tipoDocumento": "Pasaporte",
+      "fechaNacimiento": "1952-11-30T23:18:40.696Z",
+      "id": 13
+    },
+    {
+      "nombre": "Anibal",
+      "apellido": "Troilo",
+      "numeroDocumento": "4325345",
+      "tipoDocumento": "DNI",
+      "fechaNacimiento": "1901-12-01T00:36:33.096Z",
+      "id": 14
+    },
+    {
+      "nombre": "Juan",
+      "apellido": "D'árienzo",
+      "numeroDocumento": "4234234",
+      "tipoDocumento": "Cédula",
+      "fechaNacimiento": "2005-07-06T23:21:31.000Z",
+      "id": 15
     }
   ]
 }
