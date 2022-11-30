@@ -10,8 +10,6 @@ function App() {
             <Routes>
                 <Route path="home" element={<PersonasBusqueda />} />
                 <Route path="/personas/:idPersona" element={<PersonaAE />} />
-                <Route path="/personas/new" element={<PersonaAE />} />
-                {/* <Route path="/personas/:idPersona/:edit" element={<PersonaAE />} /> */}
                 <Route path="/*" element={<Navigate to="/home" />} />
             </Routes>
         </BrowserRouter>

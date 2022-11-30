@@ -24,7 +24,7 @@ export default function TablaPersonas(props) {
 
     const handleEditClick = (id) => {
         console.log("edit");
-        navigate("/personas/:" + id);
+        navigate("/personas/" + id);
     };
     const handleDeleteClick = (id, nombre, apellido) => {
         console.log("delete");

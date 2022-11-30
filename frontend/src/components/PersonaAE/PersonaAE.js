@@ -1,5 +1,5 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import {
     Box,
     Button,
@@ -29,19 +29,33 @@ function PersonaAE() {
             fechaNacimiento: "",
         },
         validationSchema: personaSchema.validationSchema,
-        onSubmit: () => {
+        onSubmit: async () => {
             handleSubmit();
         },
     });
+    
+    const idPersona = useParams('idPersona')
+    
+    if(idPersona !== 'new'){
+        const fetchPersonaById = async() => {
+//TODO personaService.getPersonaByID(idPersona)
+
+
+        }
+        fetchPersonaById(idPersona)
+    }
+    
+
 
     const handleSubmit = async (e) => {
         e?.preventDefault();
+        console.log("submitOK");
     };
 
     const paperStyle = {
         sx: {
             width: "100%",
-            minWidth: "250px",
+            minWidth: "200px",
             mb: 3,
         },
     };
@@ -69,7 +83,7 @@ function PersonaAE() {
     };
 
     const inputsStackStyle = {
-        sx: { width: "25%", minWidth: "200px", mr: 2 },
+        sx: { width: { xs: "100%", sm: "33%" }, mr: 2 },
     };
 
     const backButtonProps = {
@@ -80,14 +94,16 @@ function PersonaAE() {
     };
 
     const saveButtonProps = {
-        onClick: handleSubmit(),
+        type: "submit",
+        // onClick: handleSubmit(),
         variant: "contained",
         color: "success",
         sx: { textTransform: "none" },
     };
 
+    console.log("formik ", formik);
     return (
-        <form method="post" onSubmit={formik.handleSubmit}>
+        <form onSubmit={formik.handleSubmit}>
             <Box {...boxStyle}>
                 <Container>
                     <Paper {...paperStyle}>
@@ -109,13 +125,6 @@ function PersonaAE() {
                                             formik.touched.nombre &&
                                             Boolean(formik.errors.nombre)
                                         }
-                                        // helperText={
-                                        //     'hola mundo'
-                                        // }
-                                        // error={
-                                        //     formik.touched.nombre &&
-                                        //     Boolean(formik.errors.nombre)
-                                        // }
                                         helperText={
                                             formik.touched.nombre &&
                                             formik.errors.nombre
@@ -141,17 +150,18 @@ function PersonaAE() {
                                     />
                                 </Stack>
                                 <Stack {...inputsStackStyle}>
-                                    <Typography {...textLabel}>
+                                    <Typography {...textLabel} noWrap ellipsis>
                                         Numero de Documento
                                     </Typography>
                                     <TextField
                                         id={"numeroDocumento"}
-                                        label="Numero de documento"
                                         value={formik.values.numeroDocumento}
                                         onChange={formik.handleChange}
                                         error={
                                             formik.touched.numeroDocumento &&
-                                            Boolean(formik.errors.numeroDocumento)
+                                            Boolean(
+                                                formik.errors.numeroDocumento
+                                            )
                                         }
                                         helperText={
                                             formik.touched.numeroDocumento &&
@@ -174,14 +184,13 @@ function PersonaAE() {
                                         labelForNone="Seleccionar tipo de documento"
                                         values={["DNI", "Pasaporte", "L.E."]}
                                         width={"100%"}
-                                        minWidth={200}
-
-                                        onChange={formik.handleChange}
-                                        error={
+                                        // minWidth={178}
+                                        handleChange={formik.handleChange}
+                                        errorProp={
                                             formik.touched.tipoDocumento &&
                                             Boolean(formik.errors.tipoDocumento)
                                         }
-                                        helperText={
+                                        helperTextProp={
                                             formik.touched.tipoDocumento &&
                                             formik.errors.tipoDocumento
                                         }
@@ -192,22 +201,26 @@ function PersonaAE() {
                                         Fecha de Nacimiento
                                     </Typography>
                                     <DatePicker
-                                        // value={formik.values.fechaPago || ""}
-                                        id="fechaPago"
-                                        name="fechaPago"
-                                        // label="Fecha de pago"
+                                        value={
+                                            formik.values.fechaNacimiento || ""
+                                        }
+                                        id="fechaNacimiento"
+                                        name="fechaNacimiento"
                                         editable={true}
-                                        // onChange={formik.setFieldValue}
-                                        // errorProp={
-                                        // formik.touched.fechaPago &&
-                                        // Boolean(formik.errors.fechaPago)
-                                        // }
-                                        // helperTextProp={
-                                        // formik.touched.fechaPago &&
-                                        // formik.errors.fechaPago
-                                        // }
+                                        onChange={formik.setFieldValue}
+                                        errorProp={
+                                            formik.touched.fechaNacimiento &&
+                                            Boolean(
+                                                formik.errors.fechaNacimiento
+                                            )
+                                        }
+                                        helperTextProp={
+                                            formik.touched.fechaNacimiento &&
+                                            formik.errors.fechaNacimiento
+                                        }
                                     />
                                 </Stack>
+                                <Stack {...inputsStackStyle} />
                             </Stack>
                         </Box>
                     </Paper>
