@@ -51,47 +51,47 @@ export default function TablaPersonas(props) {
                         <TableRow>
                             <TableCell align="left" style={{ minWidth: 3 }}>
                                 {" "}
-                                <Typography {...props.textLabel}>
+                                <Typography {...props.textLabelProps}>
                                     Id
                                 </Typography>{" "}
                             </TableCell>
                             <TableCell align="left" style={{ minWidth: 20 }}>
                                 {" "}
-                                <Typography {...props.textLabel}>
+                                <Typography {...props.textLabelProps}>
                                     Nombre{" "}
                                 </Typography>
                             </TableCell>
                             <TableCell align="left" style={{ minWidth: 20 }}>
                                 {" "}
-                                <Typography {...props.textLabel}>
+                                <Typography {...props.textLabelProps}>
                                     Apellido{" "}
                                 </Typography>
                             </TableCell>
                             <TableCell align="left" style={{ minWidth: 8 }}>
                                 {" "}
-                                <Typography {...props.textLabel}>
+                                <Typography {...props.textLabelProps}>
                                     Número Documento{" "}
                                 </Typography>
                             </TableCell>
                             <TableCell align="left" style={{ minWidth: 8 }}>
                                 {" "}
-                                <Typography {...props.textLabel}>
+                                <Typography {...props.textLabelProps}>
                                     Tipo Documento{" "}
                                 </Typography>
                             </TableCell>
                             <TableCell align="left" style={{ minWidth: 8 }}>
                                 {" "}
-                                <Typography {...props.textLabel}>
+                                <Typography {...props.textLabelProps}>
                                     Fecha Nacimiento{" "}
                                 </Typography>
                             </TableCell>
                             <TableCell align="left" style={{ minWidth: 8 }}>
                                 {" "}
-                                <Typography {...props.textLabel}> </Typography>
+                                <Typography {...props.textLabelProps}> </Typography>
                             </TableCell>
                             <TableCell align="left" style={{ minWidth: 8 }}>
                                 {" "}
-                                <Typography {...props.textLabel}> </Typography>
+                                <Typography {...props.textLabelProps}> </Typography>
                             </TableCell>
                         </TableRow>
                     </TableHead>
@@ -113,18 +113,19 @@ export default function TablaPersonas(props) {
                 <Grid item xs={8}>
                     <TablePagination
                         id="paginacionClientes"
+                        count={props.totalCount}
                         labelRowsPerPage="Filas"
-                        // rowsPerPageOptions={isMediumDevice ? [] : [15, 25, 100]}
-                        rowsPerPageOptions={[]}
-                        component="div"
-                        // count={props.clientesTotal}
-                        rowsPerPage={props.rowsPerPage}
+                        rowsPerPage={5}
                         page={props.page}
-                        onPageChange={props.handleChangePage}
+                        // rowsPerPageOptions={isMediumDevice ? [] : [15, 25, 100]}
+                        // count={props.clientesTotal}
+                        onPageChange={ (event, newPage) => {props.setPage(newPage)}}
                         onRowsPerPageChange={props.handleChangeRowsPerPage}
+                        component="div"
                         backIconButtonProps={{ id: "backPageButtonClients" }}
                         nextIconButtonProps={{ id: "nextPageButtonClients" }}
                         SelectProps={{ id: "selectRowsPropsClients" }}
+                        rowsPerPageOptions={[]}
                     />
                 </Grid>
             </Grid>

@@ -60,7 +60,7 @@ function SeccionFiltros(props) {
                         sx={{ mt: 2 }}
                     >
                         <Stack {...inputsStackStyle}>
-                            <Typography {...props.textLabel}>Nombre</Typography>
+                            <Typography {...props.textLabelProps}>Nombre</Typography>
                             <TextField
                                 value={props.nombre}
                                 onChange={(event) => {
@@ -69,7 +69,7 @@ function SeccionFiltros(props) {
                             />
                         </Stack>
                         <Stack {...inputsStackStyle}>
-                            <Typography {...props.textLabel}>
+                            <Typography {...props.textLabelProps}>
                                 Tipo de documento
                             </Typography>
                             <GenericComboBox
@@ -82,7 +82,7 @@ function SeccionFiltros(props) {
                                 editable={true}
                                 valueForNone=""
                                 labelForNone="Seleccionar tipo de documento"
-                                values={["DNI", "Pasaporte", "L.E."]}
+                                values={["DNI", "Pasaporte", "Cédula"]}
                                 width={'100%'}
                                 minWidth={200}
                             />

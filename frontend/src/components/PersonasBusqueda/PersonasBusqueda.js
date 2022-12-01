@@ -12,25 +12,31 @@ function PersonasBusqueda() {
     const [tipoDoc, setTipoDoc] = useState("");
     const [personas, setPersonas] = useState([]);
     const [isFiltered, setIsFiltered] = useState(false);
+    const [totalCount, setTotalCount] = useState('')
+    const [page, setPage] = useState(() => 0);
+    const pageSize = 5
 
     const fetchPersonas = useCallback(async () => {
-        const personas = await personaService.getPersonas();
-        setPersonas(personas);
-    }, []);
+        const personas = await personaService.getPersonas(page*pageSize);
+        setPersonas(personas.data);
+        setTotalCount(personas.headers["x-total-count"])
+    }, [page]);
 
     const handleSearch = async () => {
         console.log("props.nombre,props.tipoDocumento", nombre, tipoDoc);
         const personasFiltradas =
             await personaService.getPersonasByNombreOrByTipoDocumento(
                 nombre,
-                tipoDoc
+                tipoDoc,
+                page*pageSize
             );
-        setPersonas(await personasFiltradas);
+        setPersonas(await personasFiltradas.data);
+        setTotalCount(personasFiltradas.headers["x-total-count"])
         if (nombre !== "" && tipoDoc !== "") {
             setIsFiltered(true);
         }
     };
-    
+
     useEffect(() => {
         fetchPersonas().catch(console.error);
     }, [fetchPersonas]);
@@ -54,7 +60,7 @@ function PersonasBusqueda() {
         },
     };
 
-    const textLabel = {
+    const textLabelProps = {
         variant: "body1",
         color: grey[700],
         style: { fontWeight: "600" },
@@ -64,25 +70,28 @@ function PersonasBusqueda() {
         <Box {...boxStyle}>
             <Container>
                 <SeccionFiltros
+                    handleSearch={handleSearch}
                     nombre={nombre}
+                    paperStyle={paperStyle}
+                    textLabelProps={textLabelProps}
+                    tipoDoc={tipoDoc}
+                    setIsFiltered={setIsFiltered}
                     setNombre={setNombre}
                     setPersonas={setPersonas}
-                    tipoDoc={tipoDoc}
                     setTipoDoc={setTipoDoc}
-                    setIsFiltered={setIsFiltered}
-                    paperStyle={paperStyle}
-                    textLabel={textLabel}
-                    handleSearch={handleSearch}
                 />
                 <SeccionListadoPersonas
-                    setTipoDoc={setTipoDoc}
-                    setNombre={setNombre}
-                    personas={personas}
-                    paperStyle={paperStyle}
-                    isFiltered={isFiltered}
-                    setIsFiltered={setIsFiltered}
                     handleSearch={handleSearch}
-                    textLabel={textLabel}
+                    isFiltered={isFiltered}
+                    paperStyle={paperStyle}
+                    page={page}
+                    personas={personas}
+                    textLabelProps={textLabelProps}
+                    totalCount={totalCount}
+                    setIsFiltered={setIsFiltered}
+                    setNombre={setNombre}
+                    setPage={setPage}
+                    setTipoDoc={setTipoDoc}
                 />
             </Container>
         </Box>

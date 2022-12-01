@@ -87,6 +87,22 @@
       "tipoDocumento": "Cédula",
       "fechaNacimiento": "2005-07-06T23:21:31.000Z",
       "id": 15
+    },
+    {
+      "nombre": "Billie",
+      "apellido": "Holyday",
+      "numeroDocumento": "45345366",
+      "tipoDocumento": "Pasaporte",
+      "fechaNacimiento": "2000-12-02T03:00:00.000Z",
+      "id": 16
+    },
+    {
+      "nombre": "Mercedes",
+      "apellido": "Sosa",
+      "numeroDocumento": "6004536",
+      "tipoDocumento": "DNI",
+      "fechaNacimiento": "1948-12-01T14:22:16.219Z",
+      "id": 17
     }
   ]
 }

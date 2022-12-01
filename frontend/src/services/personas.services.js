@@ -2,10 +2,11 @@ import axios from "axios"
 
 const API_URL = 'http://localhost:3010/personas'
 
-const getPersonas = () => {
-    return axios.get(API_URL)
+const getPersonas = (firstRow) => {
+    return axios.get(API_URL + '?_start=' + firstRow + '&_limit=5')
     .then((res) => {
-    return res.data}
+        // console.log(res.headers["x-total-count"]);
+    return res}
         )
     .catch((error) =>{
         return handleError(error)
@@ -45,11 +46,17 @@ const getPersonaById = (id) => {
         })
     }
 
-    const getPersonasByNombreOrByTipoDocumento = (nombre, tipoDocumento) => {
+    const getPersonasByNombreOrByTipoDocumento = (nombre, tipoDocumento, firstRow) => {
         // ?nombre_like=m&tipoDocumento_like=Pasaporte
-        return axios.get(API_URL + '?nombre_like='+ nombre +'&tipoDocumento_like='+ tipoDocumento)
+        return axios.get(API_URL + 
+            '?nombre_like='+ nombre +
+            '&tipoDocumento_like='+ tipoDocumento +
+            '&_start=' + firstRow + '&_limit=5'
+            )
+
         .then((res) => {
-            return res.data}
+             console.log(res);
+            return res}
                 )
             .catch((error) =>{
                 return handleError(error)

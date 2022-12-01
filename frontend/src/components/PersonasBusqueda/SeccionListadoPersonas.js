@@ -13,9 +13,9 @@ import { FilterAlt, FilterAltOff } from "@mui/icons-material";
 
 function SeccionListadoPersonas(props) {
     const handleClickFilter = () => {
-        props.setNombre('');
-        props.setTipoDoc('');
-        props.setIsFiltered(false)
+        props.setNombre("");
+        props.setTipoDoc("");
+        props.setIsFiltered(false);
         props.handleSearch();
     };
 
@@ -48,7 +48,11 @@ function SeccionListadoPersonas(props) {
                     <Divider />
                     <TablaPersonas
                         personas={props.personas}
-                        textLabel={props.textLabel}
+                        textLabelProps={props.textLabelProps}
+                        totalCount={props.totalCount}
+                        handleChangePage={props.handleChangePage}
+                        page={props.page}
+                        setPage={props.setPage}
                     />
                 </Box>
             </Paper>
