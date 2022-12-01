@@ -1,69 +1,72 @@
-import axios from "axios"
+import axios from "axios";
 
-const API_URL = 'http://localhost:3010/personas'
-
-const getPersonas = (firstRow) => {
-    return axios.get(API_URL + '?_start=' + firstRow + '&_limit=5')
-    .then((res) => {
-        // console.log(res.headers["x-total-count"]);
-    return res}
-        )
-    .catch((error) =>{
-        return handleError(error)
-    })
-}
+const API_URL = "http://localhost:3010/personas";
 
 const postPersona = (persona) => {
-    return axios.post(API_URL, persona)
-    .then((res)=>{console.log(res)})
-    .catch((error)=>{
-        return handleError(error)
-    })
-}
+    return axios
+        .post(API_URL, persona)
+        .then((res) => {
+            console.log(res);
+        })
+        .catch((error) => {
+            return handleError(error);
+        });
+};
 
 const putPersona = (persona, id) => {
-    return axios.put(API_URL + '/' + id, persona)
-    .then((res)=>{console.log(res)})
-    .catch((error)=>{
-        return handleError(error)
-    })
-}
+    return axios
+        .put(API_URL + "/" + id, persona)
+        .then((res) => {
+            console.log(res);
+        })
+        .catch((error) => {
+            return handleError(error);
+        });
+};
 
 const deletePersona = (id) => {
-return axios.delete(API_URL +'/' + id)
-.then((res)=>console.log(res))
-.catch((error) => {
-return handleError(error)
-})}
+    return axios
+        .delete(API_URL + "/" + id)
+        .then((res) => console.log(res))
+        .catch((error) => {
+            return handleError(error);
+        });
+};
 
 const getPersonaById = (id) => {
-    return axios.get(API_URL + '/' + id)
-    .then((res) => {
-        return res.data}
-            )
-        .catch((error) =>{
-            return handleError(error)
+    return axios
+        .get(API_URL + "/" + id)
+        .then((res) => {
+            return res.data;
         })
-    }
+        .catch((error) => {
+            return handleError(error);
+        });
+};
 
-    const getPersonasByNombreOrByTipoDocumento = (nombre, tipoDocumento, firstRow) => {
-        // ?nombre_like=m&tipoDocumento_like=Pasaporte
-        return axios.get(API_URL + 
-            '?nombre_like='+ nombre +
-            '&tipoDocumento_like='+ tipoDocumento +
-            '&_start=' + firstRow + '&_limit=5'
-            )
+const getPersonasByNombreOrByTipoDocumento = (
+    firstRow,
+    nombre,
+    tipoDocumento
+) => {
+    let parametros = "?_start=" + firstRow + "&_limit=5";
+    if (nombre !== undefined) {
+        parametros += "&nombre_like=" + nombre;
+    }
+    if (tipoDocumento !== undefined) {
+        parametros += "&tipoDocumento_like=" + tipoDocumento;
+    }
+    return axios
+        .get(API_URL + parametros)
 
         .then((res) => {
-             console.log(res);
-            return res}
-                )
-            .catch((error) =>{
-                return handleError(error)
-            })
-        }
-
-
+            console.log(res);
+            return res;
+        })
+        .catch((error) => {
+            return handleError(error);
+        });
+};
 
 const handleError = (error) => {
     if (error.response) {
@@ -79,12 +82,11 @@ const handleError = (error) => {
 };
 
 const personaService = {
-    getPersonas,
     postPersona,
     putPersona,
     deletePersona,
     getPersonaById,
-    getPersonasByNombreOrByTipoDocumento
-}
+    getPersonasByNombreOrByTipoDocumento,
+};
 
 export default personaService;

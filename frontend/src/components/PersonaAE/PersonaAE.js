@@ -66,7 +66,6 @@ useEffect(()=>{
     const handleRespuesta = (respuesta, mensaje) => {
         if (respuesta instanceof AxiosError) {
           console.log(respuesta)
-        //   processErrorMessage(respuesta.response.data)
         } else {
           navigate("/home");
         //   setDataSnackbar(mensaje);

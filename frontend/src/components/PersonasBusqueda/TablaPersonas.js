@@ -9,7 +9,7 @@ import TableHead from "@mui/material/TableHead";
 import TablePagination from "@mui/material/TablePagination";
 import TableRow from "@mui/material/TableRow";
 
-import { useMediaQuery, Grid, Typography } from "@mui/material";
+import { Grid, Typography } from "@mui/material";
 import { DeleteForever } from "@mui/icons-material";
 import FilaTablaPersonas from "./FilaTablaPersonas";
 import AlertDialog from "../reusables/AlertDialog";
@@ -22,24 +22,19 @@ export default function TablaPersonas(props) {
     const [apellido, setApellido] = useState("");
     const [id, setId] = useState("");
 
-    const isMediumDevice = useMediaQuery("(max-width:900px");
-
     const handleEditClick = (id) => {
-        console.log("edit");
         navigate("/personas/" + id);
     };
     const handleDeleteClick = (id, nombre, apellido) => {
-        console.log("delete");
         setNombre(nombre);
         setApellido(apellido);
         setId(id);
-        console.log(id);
         setOpenAlertDialog(true);
+        navigate("/personas");
+
     };
 
     const deletePersona = () => {
-        console.log(id);
-        console.log("deleteOK");
         personaService.deletePersona(id);
     };
 
@@ -87,11 +82,15 @@ export default function TablaPersonas(props) {
                             </TableCell>
                             <TableCell align="left" style={{ minWidth: 8 }}>
                                 {" "}
-                                <Typography {...props.textLabelProps}> </Typography>
+                                <Typography {...props.textLabelProps}>
+                                    {" "}
+                                </Typography>
                             </TableCell>
                             <TableCell align="left" style={{ minWidth: 8 }}>
                                 {" "}
-                                <Typography {...props.textLabelProps}> </Typography>
+                                <Typography {...props.textLabelProps}>
+                                    {" "}
+                                </Typography>
                             </TableCell>
                         </TableRow>
                     </TableHead>
@@ -117,14 +116,10 @@ export default function TablaPersonas(props) {
                         labelRowsPerPage="Filas"
                         rowsPerPage={5}
                         page={props.page}
-                        // rowsPerPageOptions={isMediumDevice ? [] : [15, 25, 100]}
-                        // count={props.clientesTotal}
-                        onPageChange={ (event, newPage) => {props.setPage(newPage)}}
-                        onRowsPerPageChange={props.handleChangeRowsPerPage}
+                        onPageChange={(event, newPage) => {
+                            props.setPage(newPage);
+                        }}
                         component="div"
-                        backIconButtonProps={{ id: "backPageButtonClients" }}
-                        nextIconButtonProps={{ id: "nextPageButtonClients" }}
-                        SelectProps={{ id: "selectRowsPropsClients" }}
                         rowsPerPageOptions={[]}
                     />
                 </Grid>
@@ -143,6 +138,5 @@ export default function TablaPersonas(props) {
                 <DeleteForever color="warning" fontSize="medium" />
             </AlertDialog>
         </>
-        // </Paper>
     );
 }

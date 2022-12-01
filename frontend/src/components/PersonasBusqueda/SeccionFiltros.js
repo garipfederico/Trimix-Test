@@ -1,23 +1,12 @@
 import React from "react";
-import {useNavigate} from 'react-router-dom'
-import {
-    Button,
-    Divider,
-    Paper,
-    TextField,
-    Typography,
-} from "@mui/material";
+import { useNavigate } from "react-router-dom";
+import { Button, Divider, Paper, TextField, Typography } from "@mui/material";
 import { Box, Stack } from "@mui/system";
 import { Add, Search } from "@mui/icons-material";
 import GenericComboBox from "../reusables/GenericComboBox";
 
-import personaService from "../../services/personas.services";
-
-
 function SeccionFiltros(props) {
     const navigate = useNavigate();
-
-
 
     const stackHeaderStyle = {
         direction: "row",
@@ -25,22 +14,27 @@ function SeccionFiltros(props) {
         sx: { my: 2 },
     };
 
+    const stackRowStyle = {
+        flexDirection: { xs: "column", sm: "row" },
+        sx: { mt: 2 },
+    };
+
     const inputsStackStyle = {
         sx: { width: "25%", minWidth: "200px", mr: 2 },
     };
 
     const newButtonProps = {
-        onClick: ()=> navigate('/personas/new'),
+        onClick: () => navigate("/personas/new"),
         variant: "contained",
         color: "success",
-        sx: {textTransform:'none'},
+        sx: { textTransform: "none" },
     };
-    
+
     const searchButtonProps = {
-        onClick: ()=> props.handleSearch(),
+        onClick: () => props.handleSearch(),
         variant: "contained",
         color: "primary",
-        sx: {textTransform:'none'},
+        sx: { textTransform: "none" },
     };
     return (
         <>
@@ -55,12 +49,11 @@ function SeccionFiltros(props) {
                 <Box sx={{ p: 1 }}>
                     <Typography variant={"h5"}>Filtros</Typography>
                     <Divider />
-                    <Stack
-                        flexDirection={{ xs: "column", sm: "row" }}
-                        sx={{ mt: 2 }}
-                    >
+                    <Stack {...stackRowStyle}>
                         <Stack {...inputsStackStyle}>
-                            <Typography {...props.textLabelProps}>Nombre</Typography>
+                            <Typography {...props.textLabelProps}>
+                                Nombre
+                            </Typography>
                             <TextField
                                 value={props.nombre}
                                 onChange={(event) => {
@@ -73,7 +66,6 @@ function SeccionFiltros(props) {
                                 Tipo de documento
                             </Typography>
                             <GenericComboBox
-                                // label="Tipo de documento"
                                 id="tipoDoc"
                                 value={props.tipoDoc}
                                 handleChange={(event) => {
@@ -83,7 +75,7 @@ function SeccionFiltros(props) {
                                 valueForNone=""
                                 labelForNone="Seleccionar tipo de documento"
                                 values={["DNI", "Pasaporte", "Cédula"]}
-                                width={'100%'}
+                                width={"100%"}
                                 minWidth={200}
                             />
                         </Stack>

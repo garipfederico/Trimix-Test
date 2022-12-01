@@ -13,10 +13,10 @@ import { FilterAlt, FilterAltOff } from "@mui/icons-material";
 
 function SeccionListadoPersonas(props) {
     const handleClickFilter = () => {
-        props.setNombre("");
-        props.setTipoDoc("");
+        props.setNombre(() => "");
+        props.setTipoDoc(() => "");
         props.setIsFiltered(false);
-        props.handleSearch();
+        props.handleSearch(true);
     };
 
     const buttonFilterProps = {
@@ -50,7 +50,6 @@ function SeccionListadoPersonas(props) {
                         personas={props.personas}
                         textLabelProps={props.textLabelProps}
                         totalCount={props.totalCount}
-                        handleChangePage={props.handleChangePage}
                         page={props.page}
                         setPage={props.setPage}
                     />

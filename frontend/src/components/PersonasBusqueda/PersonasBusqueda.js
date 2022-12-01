@@ -12,29 +12,40 @@ function PersonasBusqueda() {
     const [tipoDoc, setTipoDoc] = useState("");
     const [personas, setPersonas] = useState([]);
     const [isFiltered, setIsFiltered] = useState(false);
-    const [totalCount, setTotalCount] = useState('')
+    const [totalCount, setTotalCount] = useState("");
     const [page, setPage] = useState(() => 0);
-    const pageSize = 5
+    const pageSize = 5;
 
     const fetchPersonas = useCallback(async () => {
-        const personas = await personaService.getPersonas(page*pageSize);
+        const personas =
+            await personaService.getPersonasByNombreOrByTipoDocumento(
+                page * pageSize,
+                nombre,
+                tipoDoc
+            );
         setPersonas(personas.data);
-        setTotalCount(personas.headers["x-total-count"])
-    }, [page]);
+        setTotalCount(personas.headers["x-total-count"]);
+    }, [page, isFiltered]);
 
-    const handleSearch = async () => {
-        console.log("props.nombre,props.tipoDocumento", nombre, tipoDoc);
+    const handleSearch = async (emptyFilters) => {
+        if (emptyFilters === undefined) {
+            setIsFiltered(true);
+        } else {
+            setIsFiltered(false);
+        }
+        if (nombre.length === 0 && tipoDoc.length === 0) {
+            setIsFiltered(false);
+        }
+
+        setPage(0);
         const personasFiltradas =
             await personaService.getPersonasByNombreOrByTipoDocumento(
+                page * pageSize,
                 nombre,
-                tipoDoc,
-                page*pageSize
+                tipoDoc
             );
         setPersonas(await personasFiltradas.data);
-        setTotalCount(personasFiltradas.headers["x-total-count"])
-        if (nombre !== "" && tipoDoc !== "") {
-            setIsFiltered(true);
-        }
+        setTotalCount(personasFiltradas.headers["x-total-count"]);
     };
 
     useEffect(() => {
@@ -75,9 +86,7 @@ function PersonasBusqueda() {
                     paperStyle={paperStyle}
                     textLabelProps={textLabelProps}
                     tipoDoc={tipoDoc}
-                    setIsFiltered={setIsFiltered}
                     setNombre={setNombre}
-                    setPersonas={setPersonas}
                     setTipoDoc={setTipoDoc}
                 />
                 <SeccionListadoPersonas
