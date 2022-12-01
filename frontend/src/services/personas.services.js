@@ -45,6 +45,18 @@ const getPersonaById = (id) => {
         })
     }
 
+    const getPersonasByNombreOrByTipoDocumento = (nombre, tipoDocumento) => {
+        // ?nombre_like=m&tipoDocumento_like=Pasaporte
+        return axios.get(API_URL + '?nombre_like='+ nombre +'&tipoDocumento_like='+ tipoDocumento)
+        .then((res) => {
+            return res.data}
+                )
+            .catch((error) =>{
+                return handleError(error)
+            })
+        }
+
+
 
 const handleError = (error) => {
     if (error.response) {
@@ -64,7 +76,8 @@ const personaService = {
     postPersona,
     putPersona,
     deletePersona,
-    getPersonaById
+    getPersonaById,
+    getPersonasByNombreOrByTipoDocumento
 }
 
 export default personaService;

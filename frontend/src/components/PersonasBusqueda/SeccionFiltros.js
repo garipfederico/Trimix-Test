@@ -11,9 +11,14 @@ import { Box, Stack } from "@mui/system";
 import { Add, Search } from "@mui/icons-material";
 import GenericComboBox from "../reusables/GenericComboBox";
 
+import personaService from "../../services/personas.services";
+
 
 function SeccionFiltros(props) {
     const navigate = useNavigate();
+
+
+
     const stackHeaderStyle = {
         direction: "row",
         justifyContent: "space-between",
@@ -30,8 +35,9 @@ function SeccionFiltros(props) {
         color: "success",
         sx: {textTransform:'none'},
     };
-
-    const searchButtonStyle = {
+    
+    const searchButtonProps = {
+        onClick: ()=> props.handleSearch(),
         variant: "contained",
         color: "primary",
         sx: {textTransform:'none'},
@@ -74,7 +80,7 @@ function SeccionFiltros(props) {
                                     props.setTipoDoc(event.target.value);
                                 }}
                                 editable={true}
-                                valueForNone="dfd"
+                                valueForNone=""
                                 labelForNone="Seleccionar tipo de documento"
                                 values={["DNI", "Pasaporte", "L.E."]}
                                 width={'100%'}
@@ -83,7 +89,7 @@ function SeccionFiltros(props) {
                         </Stack>
                     </Stack>
                     <Stack direction={"row"} justifyContent={"flex-end"}>
-                        <Button {...searchButtonStyle}>
+                        <Button {...searchButtonProps}>
                             <Search />
                             Buscar
                         </Button>

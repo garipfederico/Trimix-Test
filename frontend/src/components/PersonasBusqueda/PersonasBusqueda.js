@@ -11,15 +11,28 @@ function PersonasBusqueda() {
     const [nombre, setNombre] = useState("");
     const [tipoDoc, setTipoDoc] = useState("");
     const [personas, setPersonas] = useState([]);
+    const [isFiltered, setIsFiltered] = useState(false);
 
     const fetchPersonas = useCallback(async () => {
         const personas = await personaService.getPersonas();
         setPersonas(personas);
     }, []);
 
+    const handleSearch = async () => {
+        console.log("props.nombre,props.tipoDocumento", nombre, tipoDoc);
+        const personasFiltradas =
+            await personaService.getPersonasByNombreOrByTipoDocumento(
+                nombre,
+                tipoDoc
+            );
+        setPersonas(await personasFiltradas);
+        if (nombre !== "" && tipoDoc !== "") {
+            setIsFiltered(true);
+        }
+    };
+    
     useEffect(() => {
-        fetchPersonas()
-        .catch(console.error);
+        fetchPersonas().catch(console.error);
     }, [fetchPersonas]);
 
     const paperStyle = {
@@ -53,14 +66,22 @@ function PersonasBusqueda() {
                 <SeccionFiltros
                     nombre={nombre}
                     setNombre={setNombre}
+                    setPersonas={setPersonas}
                     tipoDoc={tipoDoc}
                     setTipoDoc={setTipoDoc}
+                    setIsFiltered={setIsFiltered}
                     paperStyle={paperStyle}
                     textLabel={textLabel}
+                    handleSearch={handleSearch}
                 />
                 <SeccionListadoPersonas
+                    setTipoDoc={setTipoDoc}
+                    setNombre={setNombre}
                     personas={personas}
                     paperStyle={paperStyle}
+                    isFiltered={isFiltered}
+                    setIsFiltered={setIsFiltered}
+                    handleSearch={handleSearch}
                     textLabel={textLabel}
                 />
             </Container>
