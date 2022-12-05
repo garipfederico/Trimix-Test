@@ -6,7 +6,7 @@ const {
     getPersona,
     updatePersona,
     deletePersona
-} = require('../controllers/personas.controllers')
+} = require('../handlers/PersonasHandler')
 
 router.route("/")
 .get(getPersonas)

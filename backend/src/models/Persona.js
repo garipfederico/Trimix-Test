@@ -1,15 +1,5 @@
 const { Schema, model } = require('mongoose');
 
-// {
-//     "nombre": "Jim",
-//     "apellido": "Morrison",
-//     "numeroDocumento": "8006476",
-//     "tipoDocumento": "Pasaporte",
-//     "fechaNacimiento": "2022-11-07T03:00:00.000Z",
-//     "id": 2
-//   },
-
-
 const personaSchema = new Schema({
     nombre: {
         type: String,
