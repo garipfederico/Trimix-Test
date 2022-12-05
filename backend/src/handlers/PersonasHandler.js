@@ -4,7 +4,7 @@ const Persona = require("../models/Persona");
 const PersonaService = require("../services/PersonaService");
 
 personasHandler.getPersonas = async (req, res, next) => {
-    PersonaService.getPersonas()
+    PersonaService.getPersonas(req)
         .then((personas) => res.status(200).json(personas))
         .catch(next);
 };

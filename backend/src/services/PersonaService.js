@@ -1,20 +1,33 @@
+// const escapeStringRegexp = require("escape-string-regexp");
 const BadRequest = require("../errors/BadRequest");
 const InternarlError = require("../errors/InternalError");
 const NotFound = require("../errors/NotFound");
 const Persona = require("../models/Persona");
 
-// funcion addCard
-//checkAddCardRequest
-//Creacion objeto
-//doAddCard
-//retorna el objeto desde una llamada a la bdd o sea return getCardbyId
-
-// function checkAddCardRequest
-//
 const PersonaService = {};
 
 PersonaService.getPersonas = async (req) => {
-    return await Persona.find();
+    let _start;
+    let _limit;
+    let nombre_like;
+    let tipoDocumento_like;
+    let searchObject = {}
+if(req.query._start){
+        _start = req.query._start
+    }
+if(req.query._limit){
+     _limit = req.query._limit
+    }
+if(req.query.nombre_like){
+     nombre_like = req.query.nombre_like
+     searchObject.nombre =  new RegExp(nombre_like, `i`)
+    }
+if(req.query.tipoDocumento_like){
+    tipoDocumento_like = req.query.tipoDocumento_like
+    searchObject.tipoDocumento = tipoDocumento_like
+    }
+    // return await Persona.find({nombre: new RegExp(nombre_like, `i`), tipoDocumento: tipoDocumento_like} )
+    return await Persona.find(searchObject).skip(_start).limit(_limit)
 };
 
 PersonaService.addPersona = async (req) => {

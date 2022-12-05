@@ -25,17 +25,19 @@ export default function TablaPersonas(props) {
     const handleEditClick = (id) => {
         navigate("/personas/" + id);
     };
+
     const handleDeleteClick = (id, nombre, apellido) => {
+        console.log(id)
         setNombre(nombre);
         setApellido(apellido);
         setId(id);
         setOpenAlertDialog(true);
-        navigate("/personas");
-
+        
     };
-
+    
     const deletePersona = () => {
         personaService.deletePersona(id);
+        navigate("/personas");
     };
 
     return (

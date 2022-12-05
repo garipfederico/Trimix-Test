@@ -5,13 +5,13 @@ export default function TablesClientRow(props) {
 
     const buttonEditProps ={
         variant:'contained',
-        onClick:() => props.handleEditClick(props.id)
+        onClick:() => props.handleEditClick(props._id)
     }
 
     const buttonDeleteProps ={
         variant:'contained',
         color:'error',
-        onClick:() => props.handleDeleteClick(props.id, props.nombre, props.apellido)
+        onClick:() => props.handleDeleteClick(props._id, props.nombre, props.apellido)
     }
 
     const getFechaFormateada = () => {
@@ -25,7 +25,7 @@ export default function TablesClientRow(props) {
         <TableRow hover
             tabIndex={-1}
             >
-            <TableCell align='left' key={"id"} > {props.id}</TableCell>
+            <TableCell align='left' key={"id"} > {props._id}</TableCell>
             <TableCell align='left' key={"nombre"} > {props.nombre}</TableCell>
             <TableCell align='left' key={"apellido"} > {props.apellido}</TableCell>
             <TableCell align='left' key={"numdoc"} > {props.numeroDocumento}</TableCell>

@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "http://localhost:3010/personas";
+const API_URL = "http://localhost:4000/api/personas";
 
 const postPersona = (persona) => {
     return axios
@@ -25,6 +25,7 @@ const putPersona = (persona, id) => {
 };
 
 const deletePersona = (id) => {
+    console.log(id)
     return axios
         .delete(API_URL + "/" + id)
         .then((res) => console.log(res))
