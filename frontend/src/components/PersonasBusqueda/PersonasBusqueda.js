@@ -45,6 +45,7 @@ function PersonasBusqueda() {
                 tipoDoc
             );
         setPersonas(await personasFiltradas.data);
+        console.log(personasFiltradas)
         setTotalCount(personasFiltradas.headers["x-total-count"]);
     };
 

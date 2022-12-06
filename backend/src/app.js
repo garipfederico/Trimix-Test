@@ -7,7 +7,7 @@ const ErrorHandler = require('./handlers/ErrorHandler')
 app.set('port', process.env.PORT || 4000);
 
 // middlewares
-app.use(cors());
+app.use(cors({exposedHeaders:'X-Total-Count'}));
 app.use(express.json());
 
 // routes

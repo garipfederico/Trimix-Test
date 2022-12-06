@@ -6,7 +6,7 @@ const Persona = require("../models/Persona");
 
 const PersonaService = {};
 
-PersonaService.getPersonas = async (req) => {
+PersonaService.getPersonas = async (req, res) => {
     let _start;
     let _limit;
     let nombre_like;
@@ -26,6 +26,8 @@ if(req.query.tipoDocumento_like){
     tipoDocumento_like = req.query.tipoDocumento_like
     searchObject.tipoDocumento = tipoDocumento_like
     }
+    const personasTotal = await Persona.find(searchObject).count()
+    res.append('X-Total-Count', personasTotal)
     // return await Persona.find({nombre: new RegExp(nombre_like, `i`), tipoDocumento: tipoDocumento_like} )
     return await Persona.find(searchObject).skip(_start).limit(_limit)
 };
