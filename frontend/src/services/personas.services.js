@@ -1,6 +1,10 @@
 import axios from "axios";
 
+// Conectar a Servidor backend con BBDD Atlas MongoDB
 const API_URL = "http://localhost:4000/api/personas";
+
+// O puede conectar de forma local a fake server (Json-server) (ejecutar npm run server)
+// const API_URL = "http://localhost:3010/personas";
 
 const postPersona = (persona) => {
     return axios

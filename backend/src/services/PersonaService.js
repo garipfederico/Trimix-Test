@@ -1,4 +1,3 @@
-// const escapeStringRegexp = require("escape-string-regexp");
 const BadRequest = require("../errors/BadRequest");
 const InternarlError = require("../errors/InternalError");
 const NotFound = require("../errors/NotFound");
@@ -28,7 +27,6 @@ if(req.query.tipoDocumento_like){
     }
     const personasTotal = await Persona.find(searchObject).count()
     res.append('X-Total-Count', personasTotal)
-    // return await Persona.find({nombre: new RegExp(nombre_like, `i`), tipoDocumento: tipoDocumento_like} )
     return await Persona.find(searchObject).skip(_start).limit(_limit)
 };
 
