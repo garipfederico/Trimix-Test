@@ -4,10 +4,9 @@ import {
     Divider,
     Paper,
     Typography,
-    IconButton,
     Stack,
 } from "@mui/material";
-import React, { useState } from "react";
+import React from "react";
 import TablaPersonas from "./TablaPersonas";
 import { FilterAlt, FilterAltOff } from "@mui/icons-material";
 
