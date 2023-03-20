@@ -67,7 +67,7 @@ export default AlertDialog
 <AlertDialog
                 open={openAlertDialog}
                 setOpen={setOpenAlertDialog}
-                title={ 'Está por eliminar al cliente' + formik.values.nombre'}
+                title={ 'Está por eliminar al cliente' + formik.values.nombre}
                 content='¿Seguro desea eliminarlo?'
                 buttonTextAccept='Borrar'
                 buttonTextDeny='Cancelar'
